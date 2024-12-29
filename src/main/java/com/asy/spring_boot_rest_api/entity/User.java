@@ -7,6 +7,7 @@ import lombok.*;
 @Entity // Database'de bir tablo olduğunu belirtir.
 @Table(name = "Users") // Oluşturulan tablo düzenlenebilir.
 @Data // Lombok'dan gelen anotasyondur. POJO class için gerekli Getter, Setter, toString() methodlarını ekler
+@NoArgsConstructor
 public class User extends BaseEntity {
     @Id
     @SequenceGenerator(name="user_seq_gen",initialValue=100,allocationSize=1)
@@ -17,4 +18,10 @@ public class User extends BaseEntity {
     private String firstName;
     @Column(name = "surname", length = 100)
     private String lastName;
+
+    public User(String firstName, String lastName) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
